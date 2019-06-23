@@ -32,20 +32,20 @@ Usually, when applications look for a COM Object they search first on the Curren
 
 ### Extension Handler hijack
 
-This technique modifies the key values under Classes Root (HKCR) used by the system to find the applications required to open the different kind of files (txt, jpg, pdf, etc.). The tool will ask you for a file extension to *poison*, and once the process is concluded each time any user opens a file with the *poisoned* extension, the malicious payload will be executed. Also, this techniques allows you to use a *proxy* to make this method practically undetectable since the files with the chosen extension will be opened correctly and at the same time the malicious payload will be executed on the background.
+This technique modifies the key values under Classes Root (HKCR) registry used by the system to find the applications required to open the different kind of files (txt, jpg, pdf, etc.). The tool will ask you for a file extension to *poison*, and once the process is concluded each time any user opens a file with the *poisoned* extension the *malicious* payload will be executed. Also, this techniques allows you to use a *proxy* to make this method practically undetectable since the files with the chosen extension will be opened correctly and at the same time the payload will be executed on the background.
 
 
 - **User independent persistence.** 
-	- This persistence will be actividad each time ANY user of the system opens a file with the chosen extension (common extesions like txt or jpg are the best).
+	- This persistence will be activated each time ANY user of the system opens a file with the chosen extension (common extesions like txt or jpg are the best).
 
 - **Payload has to be an exe.** 
 	- I did not tested yet with other executable files like bat, it might work too.
 
 - **It does require admin privileges** 
-	- Since Classes Root registry keys are modified, admin privileges are required to the correct execution of this technique. Some environments might even need System privileges, although it is not a common situation.
+	- Since Classes Root registry is modified, admin privileges are required to perform the correct execution of this technique. Some environments might even need System privileges, although it is not a common situation.
 
-- **It might require Go language to be installed on the system.**
-	- If you choose the stealthiest method, the tool will create and compile a Go script used as a "proxy". If Go is not installed, you will need to compile the proxy in other computer.
+- **It might require that the system has Go language installed.**
+	- If you choose the stealthiest method, the tool will create and compile a Go script used as a "proxy". If Go is not installed, you will need to compile the proxy in other computer and load it on the compromised system.
 
 ---
 
