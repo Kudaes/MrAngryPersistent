@@ -15,7 +15,7 @@ This tool is highly inspired on the already mentioned research made by Sheila. C
 
 ## Usage 
 
-> To use this tool just open a cmd and execute `powershell MrPersistent.ps1`. At the moment, two techniques are implemented and the persistence obtained differs from one method to the other.
+> To use this tool just open a command prompt and execute `powershell MrPersistent.ps1`. At the moment, two techniques are implemented and the persistence obtained differs from one method to the other.
 
 ### COM Object hijack
 
