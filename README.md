@@ -27,7 +27,7 @@ Usually, when applications look for a COM Object they search first on the Curren
 - **Payload has to be a dll.** 
 
 - **It does not require admin privileges.** 
-	- Even though you can use this method without admin privileges, it requires that you know beforehand a valid COM Object identifier (check <a href="https://es.slideshare.net/rootedcon/sheila-ayelen-berta-the-art-of-persistence-mr-windows-i-dont-wanna-go-rooted2019" target="_blank">**Sheila's slides**</a>!). In case you dont know wich identifier to use, you can always use Procmon to find it out although then you will need to have Administrator privileges.
+	- Even though you can use this method without admin privileges, it requires that you know beforehand a valid COM Object identifier (check <a href="https://es.slideshare.net/rootedcon/sheila-ayelen-berta-the-art-of-persistence-mr-windows-i-dont-wanna-go-rooted2019" target="_blank">**Sheila's slides**</a>!). In case that you dont know wich identifier to use, you can always use Procmon to find it out although then you will need to have Administrator privileges.
 
 
 ### Extension Handler hijack
