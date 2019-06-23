@@ -2,7 +2,7 @@
 # Mr. Angry Persistent
 
 Tool to obtain stealthy persistence in Windows systems. Based in the excelent presentation of <a href="https://es.slideshare.net/rootedcon/sheila-ayelen-berta-the-art-of-persistence-mr-windows-i-dont-wanna-go-rooted2019" target="_blank">**Sheila**</a> at <a href="https://www.rootedcon.com/inicio" target="_blank">**RootedCON**</a>.
-I do not usually write scripts on Powershell, so feel free to modify and improve the code!
+I do not usually write scripts in Powershell, so feel free to modify and improve the code!
 
 ---
 
