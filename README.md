@@ -9,7 +9,7 @@ I do not usually write scripts in Powershell, so feel free to modify and improve
 ## Introduction
 
 This tool allows Red Teams to obtain stealthy persistence on compromised Windows systems modifying the registry to perform either COM hijack or Extension Handler hijack. The best scenario to use this tool is during Red Team operations where classic persistence methods on Windows (programmed tasks, run keys, etc.) suppose a high risk of getting caught by the Blue Team, therefore a more stealthy and unknown method is required. 
-This tool is highly inspired on the already mentioned research made by Sheila. Credits to her!
+This tool is highly inspired by the already mentioned research made by Sheila. Credits to her!
 
 --- 
 
