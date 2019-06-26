@@ -29,6 +29,9 @@ Usually, when applications look for a COM Object they search first on the Curren
 - **It does not require admin privileges.** 
 	- Even though you can use this method without admin privileges, it requires that you know beforehand a valid COM Object identifier (check <a href="https://es.slideshare.net/rootedcon/sheila-ayelen-berta-the-art-of-persistence-mr-windows-i-dont-wanna-go-rooted2019" target="_blank">**Sheila's slides**</a>!). In case that you dont know wich identifier to use, you can always use Procmon to find it out although then you will need to have Administrator privileges.
 
+- **This method requires that you select the right COM Object in order to not interfere in the correct execution of the applications**
+	- For example, HKCU\Software\Classes\WOW6432Node\CLSID\{56FDF344-FD6D-11d0-958A-006097C9A090} has been successfully tested in a x64-based Windows 10 system and using Telegram Desktop as the trigger application.
+
 
 ### Extension Handler hijack
 
