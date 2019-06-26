@@ -25,7 +25,7 @@ Usually, when applications look for a COM Object they search first on the Curren
 	- The persistence will only be triggered during sessions of the same user used to modify the registry [Current User registry keys]. Other users' sessions won't be affected.
 
 - **Payload has to be a dll.** 
-	- Check InProcServer32 record.
+	- Check InProcServer32 entry.
 
 - **It does not require admin privileges.** 
 	- Even though you can use this method without admin privileges, it requires that you know beforehand a valid COM Object identifier (check <a href="https://es.slideshare.net/rootedcon/sheila-ayelen-berta-the-art-of-persistence-mr-windows-i-dont-wanna-go-rooted2019" target="_blank">**Sheila's slides**</a>!). In case that you dont know wich identifier to use, you can always use Procmon to find it out although then you will need Administrator privileges.
