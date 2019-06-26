@@ -19,18 +19,19 @@ This tool is highly inspired by the already mentioned research made by Sheila. C
 
 ### COM Object hijack
 
-Usually, when applications look for a COM Object they search first on the Current User (HKCU) registry and, if they dont find it there, they look for it under Local Machine (HKLM) registry. This method generates a new key value (poiting to our malicious payload) that does not exist in HKCU but it does on HKLM. The next time any application tries to load the COM Object it will find it first on HKCU, loading the malicious dll instead of the legit one.
+Usually, when applications look for a COM Object they search first on the Current User (HKCU) registry and, if they dont find it there, they look for it under Local Machine (HKLM) registry. This method generates a new InProcServer32 key (poiting to our malicious payload) that does not exist yet in HKCU. The next time any application tries to load the COM Object it will find it first on HKCU, loading the malicious dll instead of the legit one which is referenced on HKLM.
 
 - **User dependent persistence.** 
-	- The persistence only will be triggered during sessions of the same user used to modify the registry [Current User registry keys]. Other users' sessions won't be affected.
+	- The persistence will only be triggered during sessions of the same user used to modify the registry [Current User registry keys]. Other users' sessions won't be affected.
 
 - **Payload has to be a dll.** 
+	- Check InProcServer32 record.
 
 - **It does not require admin privileges.** 
-	- Even though you can use this method without admin privileges, it requires that you know beforehand a valid COM Object identifier (check <a href="https://es.slideshare.net/rootedcon/sheila-ayelen-berta-the-art-of-persistence-mr-windows-i-dont-wanna-go-rooted2019" target="_blank">**Sheila's slides**</a>!). In case that you dont know wich identifier to use, you can always use Procmon to find it out although then you will need to have Administrator privileges.
+	- Even though you can use this method without admin privileges, it requires that you know beforehand a valid COM Object identifier (check <a href="https://es.slideshare.net/rootedcon/sheila-ayelen-berta-the-art-of-persistence-mr-windows-i-dont-wanna-go-rooted2019" target="_blank">**Sheila's slides**</a>!). In case that you dont know wich identifier to use, you can always use Procmon to find it out although then you will need Administrator privileges.
 
 - **This method requires that you select the right COM Object in order to not interfere in the correct execution of the applications.**
-	- For example, HKCU\Software\Classes\WOW6432Node\CLSID\\{56FDF344-FD6D-11d0-958A-006097C9A090} has been successfully tested in a x64-based Windows 10 system and using Telegram Desktop as the trigger application.
+	- For example, HKCU\Software\Classes\WOW6432Node\CLSID\\{56FDF344-FD6D-11d0-958A-006097C9A090} has been successfully tested in a x64-based Windows 10 system and using Telegram Desktop as the trigger application. The hijack of wrong COM Objects can provoke malfunctions in the applicatons of the computer.
 
 
 ### Extension Handler hijack
@@ -39,16 +40,16 @@ This technique modifies the key values under Classes Root (HKCR) registry used b
 
 
 - **User independent persistence.** 
-	- This persistence will be activated each time ANY user of the system opens a file with the chosen extension (common extesions like txt or jpg are the best).
+	- The persistence action will be triggered each time ANY user of the system opens a file with the chosen extension (common extesions like txt or jpg are the best).
 
 - **Payload has to be an exe.** 
 	- I did not tested yet with other executable files like bat, it might work too.
 
 - **It does require admin privileges** 
-	- Since Classes Root registry is modified, admin privileges are required to perform the correct execution of this technique. Some environments might even need System privileges, although it is not a common situation.
+	- Since Classes Root registry is modified, admin privileges are required to perform the correct execution of this technique. Some environments might even require System privileges, although it is not a common situation.
 
-- **It might require that the system has Go language installed.**
-	- If you choose the stealthiest method, the tool will create and compile a Go script used as a "proxy". If Go is not installed, you will need to compile the proxy in other computer and load it on the compromised system.
+- **It might require that the computer has Go language installed.**
+	- If you choose the stealthiest method, the tool will create and compile a Go script used as a "proxy". If Go is not installed, you will need to compile the proxy in other computer and upload the exe on the compromised system.
 
 ---
 
