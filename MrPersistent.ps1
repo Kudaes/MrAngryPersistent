@@ -44,7 +44,7 @@ function COM-Object
 	$guid = Read-Host "Insert GUID of the COM Object (e.g: 5A8C927F-C467-437D-9AC3-C874A100400F)."
 	$code = Get-Code
 	Write-Host "Alright, let's do some magic..."	
-	$arch = Read-Host "Do you want to edit WOW6432Node registry (for 32 bits application running in 64 bits system) ? y/n"
+	$arch = Read-Host "Do you want to create the key below WOW6432Node registry (y) or directly under Classes (n)?"
 	if ($arch -eq "n"){
 		$Path1 = "HKCU:\Software\Classes\CLSID\{$guid}"
 		$Path2 = "HKCU:\Software\Classes\CLSID\{$guid}\InProcServer32"
