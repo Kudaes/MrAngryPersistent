@@ -19,7 +19,7 @@ This tool is highly inspired by the already mentioned research made by Sheila. C
 
 ### COM Object hijack
 
-Usually, when applications look for a COM Object they search first on the Current User (HKCU) registry and, if they dont find it there, they look for it under Local Machine (HKLM) registry. This method generates a new InProcServer32 key (poiting to our malicious payload) that does not exist yet in HKCU. The next time any application tries to load the COM Object it will find it first on HKCU, loading the malicious dll instead of the legit one which is referenced on HKLM.
+Usually, when applications look for a COM Object they search first in the Current User (HKCU) registry entries and, if they dont find it there, they look for it in Local Machine (HKLM) entries. This method generates a new InProcServer32 key (poiting to our malicious payload) with the GUID of a valid COM Object that is not registered yet in HKCU. The next time any application tries to load the COM Object it will find it first on HKCU, loading the malicious dll instead of the legit one which is referenced on HKLM.
 
 - **User dependent persistence.** 
 	- The persistence will only be triggered during sessions of the same user used to modify the registry [Current User registry keys]. Other users' sessions won't be affected.
@@ -36,7 +36,7 @@ Usually, when applications look for a COM Object they search first on the Curren
 
 ### Extension Handler hijack
 
-This technique modifies the key values under Classes Root (HKCR) registry used by the system to find the applications required to open the different kind of files (txt, jpg, pdf, etc.). The tool will ask you for a file extension to *poison*, and once the process is concluded each time any user opens a file with the *poisoned* extension the *malicious* payload will be executed. Also, this techniques allows you to use a *proxy* to make this method practically undetectable since the files with the chosen extension will be opened correctly and at the same time the payload will be executed on the background.
+This technique modifies the key values in the Classes Root (HKCR) registry used by the system to find the applications required to open the different kind of files (txt, jpg, pdf, etc.). The tool will ask you for a file extension to *poison*, and once the process is concluded each time any user opens a file with the *poisoned* extension the *malicious* payload will be executed. Also, this techniques allows you to use a *proxy* to make this method practically undetectable since the files with the chosen extension will be opened correctly and at the same time the payload will be executed on the background.
 
 
 - **User independent persistence.** 
@@ -46,7 +46,7 @@ This technique modifies the key values under Classes Root (HKCR) registry used b
 	- I did not tested yet with other executable files like bat, it might work too.
 
 - **It does require admin privileges** 
-	- Since Classes Root registry is modified, admin privileges are required to perform the correct execution of this technique. Some environments might even require System privileges, although it is not a common situation.
+	- Since Classes Root registry entries are modified, admin privileges are required to perform the correct execution of this technique. Some environments might even require System privileges, although it is not a common situation.
 
 - **It might require that the computer has Go language installed.**
 	- If you choose the stealthiest method, the tool will create and compile a Go script used as a "proxy". If Go is not installed, you will need to compile the proxy in other computer and upload the exe on the compromised system.
