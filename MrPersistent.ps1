@@ -19,8 +19,8 @@ function Get-Code
 {	
 	do
 	{
-		cls
-		Write-Host "Insert the payload (dll for COM Object hijack, exe for Extension Handler method) that you want to be executed each time the persistence is triggered." 
+	    cls
+	    Write-Host "Insert the payload (dll for COM Object hijack, exe for Extension Handler method) that you want to be executed each time the persistence is triggered." 
 	    Write-Host "1: Download it via HTTP." 
 	    Write-Host "2: Insert local path."
 	    $mode = Read-Host "Choose one! I dont have all day, you know!?" 
